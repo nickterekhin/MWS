@@ -1,0 +1,47 @@
+ <div class="gall-menu" id="gall_menu_${iStat.count}" th:each="i,iStat:${#numbers.sequence(0,${num_gall},1)}">
+                <div class="gall-pict-fline" id="gall_out_${iStat.count}">
+
+                    <div class="gall-pict-inside" onclick="gl.uploadFile(this.id,${iStat.count});" onmouseover="gl.chgColorOn(this.id,${test[${iStat.index}].myName});" onmouseout="gl.chgColorOff(this.id,${test[${iStat.index}].myName});" id="gall_${isStat.count}">
+
+                        <img src="pful/gl/thumb/${test[${iStat.index}].myNmae}" id="imgall_${isStat.count}" th:if="${#strings.isEmpty(${test[${iStat.index}].myName})}"/>
+
+                    </div>
+                    <input type="file" name="fileToUpload_{$smarty.section.foo.iteration}" id="fileToUpload_{$smarty.section.foo.iteration}" size="1" class="gall_fileup" onchange="gl.ajaxFileUpload('/pful/gl/',{$smarty.section.foo.iteration},'300','1',{$gphoto[$smarty.section.foo.index]->sqlimg});"/>
+                </div>
+                {if $gphoto[$smarty.section.foo.index]->sqldsc}
+                <div id="dgall_{$smarty.section.foo.iteration}" class="gall-isinfo" onmouseover="gl.ShowInfo({$smarty.section.foo.iteration});" title="{$gphoto[$smarty.section.foo.index]->descript}">
+
+                </div>
+                {/if}
+                {if $gphoto[$smarty.section.foo.index]->sqlimg}
+                <div id="ddgall_{$smarty.section.foo.iteration}" class="gall-cntr-menu">
+                    <ul id="gall_menu_item">
+                        <li class="photo-descript"  id="ad_{$smarty.section.foo.iteration}" onclick="gl.AddDescription({$smarty.section.foo.iteration});"></li>
+                        <li class="photo-del" id="dp_{$smarty.section.foo.iteration}" onclick="gl.DelPhoto({$smarty.section.foo.iteration});"></li>
+                    </ul>
+                </div>
+                {/if}
+            </div>
+            {/section}
+
+            <script language="javascript" src="js/jupload.js" type="text/javascript"></script>
+            <script type="text/javascript" language="JavaScript1.2" src="template/standart/js/jsconv2/gallery.js"></script>
+
+            <div class="gall_menu" id="gall_menu_{$smarty.section.foo.iteration}">
+            <div class="gall_pict_fline" id="gall_out_{$smarty.section.foo.iteration}">
+
+            <div class="gall_pict_inside" onclick="gl.uploadFile(this.id,{$smarty.section.foo.iteration});" onmouseover="gl.chgColorOn(this.id,{$gphoto[$smarty.section.foo.index]->sqlimg});" onmouseout="gl.chgColorOff(this.id,{$gphoto[$smarty.section.foo.index]->sqlimg});" id="gall_{$smarty.section.foo.iteration}">{if $gphoto[$smarty.section.foo.index]->sqlimg}<img src="pful/gl/thumb/{$gphoto[$smarty.section.foo.index]->photo}" id="imgall_{$smarty.section.foo.iteration}"/>{/if}</div>
+            <input type="file" name="fileToUpload_{$smarty.section.foo.iteration}" id="fileToUpload_{$smarty.section.foo.iteration}" size="1" class="gall_fileup" onchange="gl.ajaxFileUpload('/pful/gl/',{$smarty.section.foo.iteration},'300','1',{$gphoto[$smarty.section.foo.index]->sqlimg});"/>
+            </div>
+            {if $gphoto[$smarty.section.foo.index]->sqldsc}
+            <div id="dgall_{$smarty.section.foo.iteration}" class="gall_isinfo" onmouseover="gl.ShowInfo({$smarty.section.foo.iteration});" title="{$gphoto[$smarty.section.foo.index]->descript}"></div>
+            {/if}
+            {if $gphoto[$smarty.section.foo.index]->sqlimg}
+            <div id="ddgall_{$smarty.section.foo.iteration}" class="gall_cntr_menu">
+            <ul id="gall_menu_item">
+            <li class="photo_descript"  id="ad_{$smarty.section.foo.iteration}" onclick="gl.AddDescription({$smarty.section.foo.iteration});"></li>
+            <li class="photo_del" id="dp_{$smarty.section.foo.iteration}" onclick="gl.DelPhoto({$smarty.section.foo.iteration});"></li>
+            </ul>
+            </div>
+            {/if}
+            </div>
